@@ -17,7 +17,7 @@ const Dealer = () => {
   const [postReview, setPostReview] = useState(<></>)
 
   let curr_url = window.location.href;
-  let root_url = curr_url.substring(0,curr_url.indexOf("dealer"));
+  let root_url = "https://randykrouth-3030.theiadockernext-1-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai/";
   let params = useParams();
   let id =params.id;
   let dealer_url = root_url+`fetchDealer/${id}`;
@@ -30,6 +30,8 @@ const Dealer = () => {
     });
     const retobj = await res.json();
     
+    console.log(retobj.dealer[0]);
+
     if(retobj.status === 200) {
       let dealerobjs = Array.from(retobj.dealer)
       setDealer(dealerobjs[0])
