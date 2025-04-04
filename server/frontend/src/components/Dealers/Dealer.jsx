@@ -29,12 +29,12 @@ const Dealer = () => {
       method: "GET"
     });
     const retobj = await res.json();
-    
-    console.log(retobj.dealer[0]);
 
-    if(retobj.status === 200) {
-      let dealerobjs = Array.from(retobj.dealer)
-      setDealer(dealerobjs[0])
+    // console.log(retobj);
+
+    if(retobj) {
+      // let dealerobjs = Array.from(retobj.dealer)
+      setDealer(retobj)
     }
   }
 
@@ -44,13 +44,12 @@ const Dealer = () => {
     });
     const retobj = await res.json();
     
-    if(retobj.status === 200) {
-      if(retobj.reviews.length > 0){
-        setReviews(retobj.reviews)
-      } else {
+    if(retobj) {
+        setReviews(retobj)
+    }
+    else {
         setUnreviewed(true);
       }
-    }
   }
 
   const senti_icon = (sentiment)=>{
@@ -77,16 +76,15 @@ return(
       <h4  style={{color:"grey"}}>{dealer['city']},{dealer['address']}, Zip - {dealer['zip']}, {dealer['state']} </h4>
       </div>
       <div class="reviews_panel">
-      {reviews.length === 0 && unreviewed === false ? (
-        <text>Loading Reviews....</text>
-      ):  unreviewed === true? <div>No reviews yet! </div> :
-      reviews.map(review => (
-        <div className='review_panel'>
-          <img src={senti_icon(review.sentiment)} className="emotion_icon" alt='Sentiment'/>
-          <div className='review'>{review.review}</div>
-          <div className="reviewer">{review.name} {review.car_make} {review.car_model} {review.car_year}</div>
-        </div>
-      ))}
+      {reviews ? (
+        reviews.map(review => (
+            <div className='review_panel' key={review._id}>
+            <img src={senti_icon(review.sentiment)} className="emotion_icon" alt='Sentiment' />
+            <div className='review'>{review.review}</div>
+            <div className="reviewer">{review.name} {review.car_make} {review.car_model} {review.car_year}</div>
+            </div>
+        ))
+        ) : null}
     </div>  
   </div>
 )
