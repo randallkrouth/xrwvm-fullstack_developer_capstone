@@ -57,8 +57,11 @@ const PostReview = () => {
   });
 
   const json = await res.json();
+
+  console.log(json.status);
+
   if (json.status === 200) {
-      window.location.href = window.location.origin+"/dealer/"+id;
+      window.location.href = "https://randykrouth-8000.theiadockernext-1-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai/dealer/"+id;
   }
 
   }

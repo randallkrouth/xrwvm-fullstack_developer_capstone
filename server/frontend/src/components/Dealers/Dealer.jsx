@@ -21,8 +21,8 @@ const Dealer = () => {
   let params = useParams();
   let id =params.id;
   let dealer_url = root_url+`fetchDealer/${id}`;
-  let reviews_url = root_url+`fetchReviews/dealer/${id}`;
-  let post_review = root_url+`postreview/${id}`;
+  let reviews_url = `https://randykrouth-3030.theiadockernext-1-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai/fetchReviews/dealer/${id}`;
+  let post_review = `https://randykrouth-8000.theiadockernext-1-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai/postreview/${id}`;
   
   const get_dealer = async ()=>{
     const res = await fetch(dealer_url, {
